@@ -24,6 +24,78 @@ Para resolver a explosão de classes, utilizei o **Decorator Pattern**:
 *   **Componentes Concretos**: `Espresso`, `Cappuccino`, `Cha`.
 *   **Decoradores Concretos**: `Leite`, `Chocolate`, `Chantilly`, `Caramelo`.
 
+
+### Diagrama de Classes
+```mermaid
+classDiagram
+    class Beverage {
+        <<abstract>>
+        +Description: string
+        +Cost(): decimal
+    }
+
+    class Espresso {
+        +Cost(): decimal
+    }
+    class Cappuccino {
+        +Cost(): decimal
+    }
+    class Cha {
+        +Cost(): decimal
+    }
+
+    class CondimentDecorator {
+        <<abstract>>
+        -Beverage _beverage
+        +Description: string
+    }
+
+    class Leite {
+        +Cost(): decimal
+    }
+    class Chocolate {
+        +Cost(): decimal
+    }
+    class Chantilly {
+        +Cost(): decimal
+    }
+    class Caramelo {
+        +Cost(): decimal
+    }
+
+    Beverage <|-- Espresso
+    Beverage <|-- Cappuccino
+    Beverage <|-- Cha
+    Beverage <|-- CondimentDecorator
+    CondimentDecorator *-- Beverage
+    CondimentDecorator <|-- Leite
+    CondimentDecorator <|-- Chocolate
+    CondimentDecorator <|-- Chantilly
+    CondimentDecorator <|-- Caramelo
+```
+
+### Estrutura do Projeto
+```
+balta-desafio-carnacode-2026_9-decorator/
+├── src/
+│   ├── Beverage.cs             # Componente Abstrato
+│   ├── Challenge.cs            # Código Legado (Demonstração do Problema)
+│   ├── ConcreteBeverages.cs    # Componentes Concretos (Espresso, etc.)
+│   ├── ConcreteDecorators.cs   # Decoradores Concretos (Leite, etc.)
+│   ├── CondimentDecorator.cs   # Decorador Base
+│   └── Program.cs              # Novo Ponto de Entrada (Menu)
+├── balta-desafio-carnacode-2026_9-decorator.csproj
+└── README.md
+```
+
+### Etapas da Refatoração
+1.  **Análise**: Identifiquei a "explosão de classes" causada pela herança excessiva.
+2.  **Infraestrutura**: Criei o arquivo de projeto `.csproj` (Target .NET 10) para possibilitar a execução.
+3.  **Coexistência**: Renomeei a classe `Program` original para `LegacyProgram` para manter o código antigo acessível.
+4.  **Abstração**: Criei a classe base `Beverage` e o decorador base `CondimentDecorator`.
+5.  **Implementação**: Refatorei as bebidas (`Espresso`, etc.) e criei os decoradores como classes separadas (`Leite`, `Chocolate`).
+6.  **Integração**: Criei um novo `Program.cs` que permite ao usuário escolher qual versão executar.
+
 Dessa forma, é possível combinar qualquer bebida com quaisquer complementos dinamicamente, sem criar novas classes para cada combinação.
 
 ### Como Executar
