@@ -17,6 +17,22 @@ Neste processo eu aprendi:
 ## Problema
 Uma cafeteria oferece bebidas base (Café, Cappuccino, Chá) e múltiplos complementos (Leite, Chocolate, Chantilly, Caramelo). O código atual cria uma classe para cada combinação possível, resultando em explosão de classes e código duplicado.
 
+## Solução (Decorator Pattern)
+Para resolver a explosão de classes, utilizei o **Decorator Pattern**:
+*   **Componente (`Beverage`)**: Classe base abstrata para todas as bebidas.
+*   **Decorador (`CondimentDecorator`)**: Classe abstrata que herda de `Beverage` e encapsula uma instância de `Beverage`.
+*   **Componentes Concretos**: `Espresso`, `Cappuccino`, `Cha`.
+*   **Decoradores Concretos**: `Leite`, `Chocolate`, `Chantilly`, `Caramelo`.
+
+Dessa forma, é possível combinar qualquer bebida com quaisquer complementos dinamicamente, sem criar novas classes para cada combinação.
+
+### Como Executar
+O projeto permite executar tanto a versão legada quanto a refatorada:
+1.  Execute `dotnet run`
+2.  Escolha a opção:
+    *   `1`: Versão Legada (Demonstração do problema)
+    *   `2`: Versão Refatorada (Solução com Decorator)
+
 ## Sobre o CarnaCode 2026
 O desafio **CarnaCode 2026** consiste em implementar todos os 23 padrões de projeto (Design Patterns) em cenários reais. Durante os 23 desafios desta jornada, os participantes são submetidos ao aprendizado e prática na idetinficação de códigos não escaláveis e na solução de problemas utilizando padrões de mercado.
 

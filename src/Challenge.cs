@@ -173,9 +173,9 @@ namespace DesignPatternChallenge
         // Viola Open/Closed Principle
     }
 
-    class Program
+    public class LegacyProgram
     {
-        static void Main(string[] args)
+        public static void RunLegacy()
         {
             Console.WriteLine("=== Sistema de Pedidos - Cafeteria ===\n");
 
